@@ -1,0 +1,12 @@
+﻿<Window x:Class="WpfClockDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:clock="clr-namespace:WpfClockControl;assembly=wpf-clock-control"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Viewbox>
+            <clock:ClockControl Margin="0" IsDiscrete="True" >
+            </clock:ClockControl>
+        </Viewbox>
+    </Grid>
+</Window>
