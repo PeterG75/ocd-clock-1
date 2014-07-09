@@ -5,8 +5,10 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Viewbox>
-            <clock:ClockControl Margin="0" IsDiscrete="True" >
-            </clock:ClockControl>
+            <Border BorderThickness="1">
+                <clock:ClockControl Margin="0" IsDiscrete="False" >
+                </clock:ClockControl>
+            </Border>
         </Viewbox>
     </Grid>
 </Window>
