@@ -8,7 +8,6 @@
     <local:SecondsConverter x:Key="secondsConverter"/>
     <local:MinutesConverter x:Key="minutesConverter"/>
     <local:HoursConverter x:Key="hoursConverter"/>
-    <local:WeekdayConverter x:Key="weekdayConverter"/>
 
     <Style TargetType="{x:Type local:ClockControl}">
         <Setter Property="Template">
