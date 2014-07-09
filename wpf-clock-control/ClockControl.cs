@@ -5,6 +5,7 @@ using System.Windows.Threading;
 using System.Windows.Media;
 using System.Windows.Data;
 using System.Globalization;
+using System.Linq;
 
 namespace WpfClockControl
 {
@@ -71,6 +72,99 @@ namespace WpfClockControl
             //timer.Interval = TimeSpan.FromMilliseconds(100 - DateTime.Now.Millisecond / 10);
             timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
+        }
+
+
+
+        /// <summary>
+        /// Called after the control template is applied. Here we can manipulate
+        /// the control template on the fly as desired. For now let's assign
+        /// positions to twelve TextBlock objects representing the numerals on 
+        /// the clock face. We could as well do this in the XAML, but this way 
+        /// we capture the positioning logic in code, rather than the output
+        /// of that positioning logic in XAML.
+        /// </summary>
+        public override void OnApplyTemplate()
+        {
+            Canvas c = (Canvas) this.Template.FindName("MyContainer", this);
+            var labels = c.Children.OfType<TextBlock>();
+            double innerOffset = (50 - _numeralRadius) + 1;
+            double innerCircleDiameter = _numeralRadius * 2;
+
+            foreach(TextBlock tb in labels)
+            {
+                int numeral;
+                if( int.TryParse(tb.Text, out numeral) )
+                {
+                    // Get the point where the numeral should be drawn
+                    Point pt = GetHourPosition(numeral);
+
+                    // Measure how much space the numeral will take
+                    tb.FontFamily = _hourFont.FontFamily;
+                    tb.FontSize = 8;
+                    Size sz = MeasureString(tb.Text, tb, _hourFont);
+
+                    // Now adjust the position based on where on the clock face
+                    // the numeral falls, interpolating such that, at the far
+                    // end of the clock, the positions are pulled inward (to the
+                    // left and up) reflecting the right- and/or bottom-alignment
+                    // of numerals on the far sides of the clock.
+                    pt.X -= (((pt.X - innerOffset) / innerCircleDiameter) * sz.Width);
+                    pt.Y -= (((pt.Y - innerOffset) / innerCircleDiameter) * sz.Height);
+
+                    // Set position and other properties
+                    tb.SetValue(Canvas.LeftProperty, pt.X);
+                    tb.SetValue(Canvas.TopProperty, pt.Y);
+                    tb.Foreground = _brush;
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// Measure the specified candidate string in the context of the 
+        /// specified text block and type face. See:
+        /// http://stackoverflow.com/a/9266288
+        /// </summary>
+        private Size MeasureString(string candidate, TextBlock textBlock, Typeface tf)
+        {
+            var formattedText = new FormattedText( 
+                candidate, 
+                CultureInfo.CurrentUICulture, 
+                FlowDirection.LeftToRight, 
+                tf, 
+                textBlock.FontSize, 
+                Brushes.Black );
+
+            return new Size(formattedText.Width, formattedText.Height);
+        }
+
+
+
+        /// <summary>
+        /// Compute the formal position of the specified hour on the clock face
+        /// using the parametric equation for a circle and the equation for the
+        /// angle of the hour hand.
+        /// </summary>
+        /// <param name="hour">The hour. A value from 1 to 12 inclusive.</param>
+        /// <returns>The position of the upper-left point of where the hour glyph
+        /// should be drawn.</returns>
+        public Point GetHourPosition(int hour)
+        {
+            // The long way:
+            // double angle = .5 * ((60.0 * hour) + 0)
+            // (eg: double angle = 30.0 * hour)
+            // double rads = (Math.PI / 180) * angle;
+            // double r = 38; // inner circle radius
+            // double cx = 50; // circle center (x)
+            // double cy = 50; // circle center (y)
+            // return new Point(cx + r * Math.Cos(rads), cy + r * Math.Sin(rads));
+
+            // The short way:
+            double angle = (30.0 * hour) - 90;
+            double rads = (Math.PI / 180) * angle;
+            return new Point((50 + _numeralRadius * Math.Cos(rads)), (50 + _numeralRadius * Math.Sin(rads)));
         }
 
 
@@ -179,7 +273,7 @@ namespace WpfClockControl
 
 
         /// <summary>
-        /// Fire the DateTimeChanged event when the time changes.
+        /// Fire the IsDiscreteChanged event when the motion type changes.
         /// </summary>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
@@ -227,14 +321,33 @@ namespace WpfClockControl
         /// <summary>
         /// Timer used to drive the clock.
         /// </summary>
-        private DispatcherTimer timer;
-
+        DispatcherTimer     timer;
+        
 
 
         /// <summary>
         /// Cache the clock's "last tick time".
         /// </summary>
-        DateTime _lastTick = DateTime.Now;
+        DateTime            _lastTick = DateTime.Now;
+
+
+        /// <summary>
+        /// Radius of the circle used to position numerals on the clock face.
+        /// </summary>
+        double              _numeralRadius = 39.5;
+
+
+        /// <summary>
+        /// Background brush for clock geometry.
+        /// </summary>
+        SolidColorBrush     _brush = new SolidColorBrush(Color.FromRgb(64, 64, 64));
+
+
+
+        /// <summary>
+        /// Default font for clock face.
+        /// </summary>
+        Typeface            _hourFont = new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.Bold, FontStretches.Normal);
     }
 
 

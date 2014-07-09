@@ -14,13 +14,19 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ClockControl}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="108" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="108" />
-                        </Grid.RowDefinitions>
+                    <Canvas x:Name="MyContainer" Width="100" Height="100">
+                        <TextBlock>1</TextBlock>
+                        <TextBlock>2</TextBlock>
+                        <TextBlock>3</TextBlock>
+                        <TextBlock>4</TextBlock>
+                        <TextBlock>5</TextBlock>
+                        <TextBlock>6</TextBlock>
+                        <TextBlock>7</TextBlock>
+                        <TextBlock>8</TextBlock>
+                        <TextBlock>9</TextBlock>
+                        <TextBlock>10</TextBlock>
+                        <TextBlock>11</TextBlock>
+                        <TextBlock>12</TextBlock>                        
                         <Image Stretch="None" HorizontalAlignment="Left">
                             <Image.Source>
                                 <DrawingImage PresentationOptions:Freeze="True">
@@ -32,7 +38,7 @@
                                             <GeometryDrawing>
                                                 <GeometryDrawing.Geometry>
                                                     <GeometryGroup>
-                                                        <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                                                        <EllipseGeometry Center="50,50" RadiusX="49.5" RadiusY="49.5" />
                                                     </GeometryGroup>
                                                 </GeometryDrawing.Geometry>
                                                 <GeometryDrawing.Pen>
@@ -489,7 +495,7 @@
                                 </DrawingImage>
                             </Image.Source>
                         </Image>
-                    </Grid>
+                    </Canvas>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
