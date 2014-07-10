@@ -1,4 +1,4 @@
-# wpf-clock #
+# ocd-clock #
 
 ocd-clock is a simple analog clock control with support for discrete and continuous motion, consistent geometry, and precision alignment of clock hands and tick marks. It's barebones, mathematically consistent, and accurate to the (sub-) pixel.
 
