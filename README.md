@@ -1,6 +1,8 @@
 # wpf-clock #
 
-A simple analog clock control in C# and WPF with support for discrete and continuous motion and aligned hash marks.
+ocd-clock is a simple analog clock control with support for discrete and continuous motion, consistent geometry, and precision alignment of clock hands and tick marks. It's barebones, mathematically consistent, and accurate to the (sub-) pixel.
+
+![OCD Clock v1.0](ocd-clock-assets/ocd_clock.png?raw=true "OCD Clock v1.0")
 
 # License #
 
