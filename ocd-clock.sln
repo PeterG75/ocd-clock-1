@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf-clock-control", "wpf-clock-control\wpf-clock-control.csproj", "{0C3CCA41-7534-47F2-B9D4-05AEF030E9F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ocd-clock-control-wpf", "ocd-clock-control-wpf\ocd-clock-control-wpf.csproj", "{0C3CCA41-7534-47F2-B9D4-05AEF030E9F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf-clock-demo", "wpf-clock-demo\wpf-clock-demo.csproj", "{CDA84ACF-672A-4A74-9B10-72382DF4D444}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ocd-clock-demo-wpf", "ocd-clock-demo-wpf\ocd-clock-demo-wpf.csproj", "{CDA84ACF-672A-4A74-9B10-72382DF4D444}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

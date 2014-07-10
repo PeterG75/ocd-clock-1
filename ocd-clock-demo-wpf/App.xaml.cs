@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace wpf_clock_gui
+namespace OCDClockDemo
 {
     /// <summary>
     /// Interaction logic for App.xaml

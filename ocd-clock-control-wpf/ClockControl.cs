@@ -7,7 +7,7 @@ using System.Windows.Data;
 using System.Globalization;
 using System.Linq;
 
-namespace WpfClockControl
+namespace OCDClock
 {
     /// <summary>
     /// ========================================

@@ -7,8 +7,8 @@
     <ProjectGuid>{CDA84ACF-672A-4A74-9B10-72382DF4D444}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpfClockDemo</RootNamespace>
-    <AssemblyName>wpf-clock-demo</AssemblyName>
+    <RootNamespace>OCDClockDemo</RootNamespace>
+    <AssemblyName>ocd-clock-demo-wpf</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -94,9 +94,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\wpf-clock-control\wpf-clock-control.csproj">
+    <ProjectReference Include="..\ocd-clock-control-wpf\ocd-clock-control-wpf.csproj">
       <Project>{0c3cca41-7534-47f2-b9d4-05aef030e9f9}</Project>
-      <Name>wpf-clock-control</Name>
+      <Name>ocd-clock-control-wpf</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

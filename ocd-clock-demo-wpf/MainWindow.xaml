@@ -1,12 +1,12 @@
-﻿<Window x:Class="WpfClockDemo.MainWindow"
+﻿<Window x:Class="OCDClockDemo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:clock="clr-namespace:WpfClockControl;assembly=wpf-clock-control"
+        xmlns:clock="clr-namespace:OCDClock;assembly=ocd-clock-control-wpf"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Viewbox>
             <Border BorderThickness="1">
-                <clock:ClockControl Margin="0" IsDiscrete="False" >
+                <clock:ClockControl Margin="0" IsDiscrete="True" >
                 </clock:ClockControl>
             </Border>
         </Viewbox>
