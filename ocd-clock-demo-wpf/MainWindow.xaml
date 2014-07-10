@@ -6,8 +6,7 @@
     <Grid>
         <Viewbox>
             <Border BorderThickness="1">
-                <clock:ClockControl Margin="0" IsDiscrete="True" >
-                </clock:ClockControl>
+                <clock:ClockControl IsDiscrete="True" IsRunning="True" />
             </Border>
         </Viewbox>
     </Grid>

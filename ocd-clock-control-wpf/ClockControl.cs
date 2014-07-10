@@ -66,12 +66,32 @@ namespace OCDClock
         {
             base.OnInitialized(e);
             UpdateDateTime(DateTime.Now);
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(10);
-            //timer.Interval = TimeSpan.FromMilliseconds(1000);
-            //timer.Interval = TimeSpan.FromMilliseconds(100 - DateTime.Now.Millisecond / 10);
-            timer.Tick += new EventHandler(Timer_Tick);
-            timer.Start();
+            InitTimer(IsRunning);
+        }
+
+
+
+        /// <summary>
+        /// Initialize the timer used to drive the clock.
+        /// </summary>
+        protected void InitTimer(bool create)
+        {
+            if(create && _timer == null)
+            { 
+                _timer = new DispatcherTimer();
+                _timer.Interval = TimeSpan.FromMilliseconds(10);
+                //timer.Interval = TimeSpan.FromMilliseconds(1000);
+                //timer.Interval = TimeSpan.FromMilliseconds(100 - DateTime.Now.Millisecond / 10);
+                _timer.Tick += new EventHandler(Timer_Tick);
+                _timer.Start();
+            }
+            else if(!create && _timer != null)
+            {
+                _timer.Stop();
+                _timer.Tick -= Timer_Tick;
+                _timer.Interval = TimeSpan.Zero;
+                _timer = null;
+            }
         }
 
 
@@ -227,6 +247,23 @@ namespace OCDClock
 
 
         /// <summary>
+        /// Get or set whether the clock is running or frozen.
+        /// </summary>
+        public bool IsRunning
+        {
+            get
+            {
+                return (bool)GetValue(IsRunningProperty);
+            }
+            set
+            {
+                SetValue(IsRunningProperty, value);
+            }
+        }
+
+
+
+        /// <summary>
         /// Register the "DateTime" property as a formal dependency property.
         /// </summary>
         public static DependencyProperty DateTimeProperty = DependencyProperty.Register(
@@ -249,6 +286,17 @@ namespace OCDClock
 
 
         /// <summary>
+        /// Register the "IsRunning" property as a formal dependency property.
+        /// </summary>
+        public static DependencyProperty IsRunningProperty = DependencyProperty.Register(
+                "IsRunning",
+                typeof(bool),
+                typeof(ClockControl),
+                new PropertyMetadata(true, new PropertyChangedCallback(OnIsRunningInvalidated)));
+
+
+
+        /// <summary>
         /// Set up a DateTimeChanged event.
         /// </summary>
         public static readonly RoutedEvent DateTimeChangedEvent = 
@@ -256,6 +304,30 @@ namespace OCDClock
                 "DateTimeChanged", 
                 RoutingStrategy.Bubble, 
                 typeof(RoutedPropertyChangedEventHandler<DateTime>), 
+                typeof(ClockControl));
+
+
+
+        /// <summary>
+        /// Set up an DiscreteChanged event.
+        /// </summary>
+        public static readonly RoutedEvent DiscreteChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                "DiscreteChanged",
+                RoutingStrategy.Bubble,
+                typeof(RoutedPropertyChangedEventHandler<bool>),
+                typeof(ClockControl));
+
+
+
+        /// <summary>
+        /// Set up an RunningChanged event.
+        /// </summary>
+        public static readonly RoutedEvent RunningChangedEvent =
+            EventManager.RegisterRoutedEvent(
+                "RunningChanged",
+                RoutingStrategy.Bubble,
+                typeof(RoutedPropertyChangedEventHandler<bool>),
                 typeof(ClockControl));
 
 
@@ -280,7 +352,22 @@ namespace OCDClock
         protected virtual void OnIsDiscreteChanged(bool oldValue, bool newValue)
         {
             RoutedPropertyChangedEventArgs<bool> args = new RoutedPropertyChangedEventArgs<bool>(oldValue, newValue);
-            args.RoutedEvent = ClockControl.DateTimeChangedEvent;
+            args.RoutedEvent = ClockControl.DiscreteChangedEvent;
+            RaiseEvent(args);
+        }
+
+
+
+        /// <summary>
+        /// Fire the OnIsRunningChanged event when the motion type changes.
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        protected virtual void OnIsRunningChanged(bool oldValue, bool newValue)
+        {
+            InitTimer(newValue);
+            RoutedPropertyChangedEventArgs<bool> args = new RoutedPropertyChangedEventArgs<bool>(oldValue, newValue);
+            args.RoutedEvent = ClockControl.RunningChangedEvent;
             RaiseEvent(args);
         }
 
@@ -313,7 +400,24 @@ namespace OCDClock
             bool oldValue = (bool)e.OldValue;
             bool newValue = (bool)e.NewValue;
 
-            clock.OnIsDiscreteChanged(oldValue, newValue);
+            if(oldValue != newValue)
+                clock.OnIsDiscreteChanged(oldValue, newValue);
+        }
+
+
+
+        /// <summary>
+        /// Will be called every time the ClockControl.IsRunning property changes.
+        /// </summary>
+        private static void OnIsRunningInvalidated(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ClockControl clock = (ClockControl)d;
+
+            bool oldValue = (bool)e.OldValue;
+            bool newValue = (bool)e.NewValue;
+
+            if(oldValue != newValue)
+                clock.OnIsRunningChanged(oldValue, newValue);
         }
 
 
@@ -321,7 +425,7 @@ namespace OCDClock
         /// <summary>
         /// Timer used to drive the clock.
         /// </summary>
-        DispatcherTimer     timer;
+        DispatcherTimer     _timer = null;
         
 
 
