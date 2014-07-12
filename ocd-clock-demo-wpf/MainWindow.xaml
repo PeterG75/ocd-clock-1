@@ -1,13 +1,14 @@
-﻿<Window x:Class="OCDClockDemo.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:clock="clr-namespace:OCDClock;assembly=ocd-clock-control-wpf"
+        xmlns:Options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" x:Class="OCDClockDemo.MainWindow"
         Title="OCD Clock Demo" Height="350" Width="525">
-    <Grid>
-        <Viewbox>
-            <Border BorderThickness="1">
-                <clock:ClockControl IsDiscrete="True" IsRunning="True" />
-            </Border>
-        </Viewbox>
-    </Grid>
+	<Grid>
+		<Viewbox>
+			<Border BorderThickness="1">
+                <clock:ClockControl Style="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type clock:ClockControl}, ResourceId=ClockStyleOffice}}" IsDiscrete="True" IsRunning="True" />
+			</Border>
+		</Viewbox>
+	</Grid>
 </Window>
