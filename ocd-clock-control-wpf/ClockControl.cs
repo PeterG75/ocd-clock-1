@@ -67,6 +67,8 @@ namespace OCDClock
             base.OnInitialized(e);
             UpdateDateTime(DateTime.Now);
             InitTimer(IsRunning);
+            if (!_hourFont.TryGetGlyphTypeface(out _hourFontGlyph))
+                throw new InvalidOperationException("No glyphtypeface found");
         }
 
 
@@ -106,59 +108,39 @@ namespace OCDClock
         /// </summary>
         public override void OnApplyTemplate()
         {
-            Canvas c = (Canvas) this.Template.FindName("MyContainer", this);
-            var labels = c.Children.OfType<TextBlock>();
+            DrawingGroup dg = (DrawingGroup)this.Template.FindName("geoContainer", this);
+            var labels = dg.Children.OfType<GlyphRunDrawing>();
             double innerOffset = (50 - _numeralRadius) + 1;
             double innerCircleDiameter = _numeralRadius * 2;
+            double fontSizeDIP = 8.0;
+            double fontSizePt = fontSizeDIP * (72.0 / 96.0);
+            int index = 1;
 
-            foreach(TextBlock tb in labels)
+            foreach(GlyphRunDrawing grd in labels)
             {
-                int numeral;
-                if( int.TryParse(tb.Text, out numeral) )
-                {
-                    // Get the point where the numeral should be drawn
-                    Point pt = GetHourPosition(numeral);
+                // Get the point where the numeral should be drawn
+                Point pt = GetHourPosition(index);
 
-                    // Measure how much space the numeral will take
-                    tb.FontFamily = _hourFont.FontFamily;
-                    tb.FontSize = 8;
-                    Size sz = MeasureString(tb.Text, tb, _hourFont);
+                // Measure how much space the numeral will take
+                string strHour = index.ToString();
+                Size sz = MeasureString(strHour, fontSizeDIP);
 
-                    // Now adjust the position based on where on the clock face
-                    // the numeral falls, interpolating such that, at the far
-                    // end of the clock, the positions are pulled inward (to the
-                    // left and up) reflecting the right- and/or bottom-alignment
-                    // of numerals on the far sides of the clock.
-                    pt.X -= (((pt.X - innerOffset) / innerCircleDiameter) * sz.Width);
-                    pt.Y -= (((pt.Y - innerOffset) / innerCircleDiameter) * sz.Height);
+                // Now adjust the position based on where on the clock face
+                // the numeral falls, interpolating such that, at the far
+                // end of the clock, the positions are pulled inward (to the
+                // left and up) reflecting the right- and/or bottom-alignment
+                // of numerals on the far sides of the clock.
+                pt.X -= ((pt.X - innerOffset) / innerCircleDiameter) * sz.Width;
+                pt.Y += (1.0 - ((pt.Y - innerOffset) / innerCircleDiameter)) * sz.Height;
 
-                    // Set position and other properties
-                    tb.SetValue(Canvas.LeftProperty, pt.X);
-                    tb.SetValue(Canvas.TopProperty, pt.Y);
-                    tb.Foreground = _brush;
-                }
+                // Create the low-level glyph run for the text.
+                grd.GlyphRun = CreateGlyphRun(strHour, pt, fontSizeDIP);
+                grd.ForegroundBrush = Brushes.Black;
+                index++;
             }
+
         }
 
-
-
-        /// <summary>
-        /// Measure the specified candidate string in the context of the 
-        /// specified text block and type face. See:
-        /// http://stackoverflow.com/a/9266288
-        /// </summary>
-        private Size MeasureString(string candidate, TextBlock textBlock, Typeface tf)
-        {
-            var formattedText = new FormattedText( 
-                candidate, 
-                CultureInfo.CurrentUICulture, 
-                FlowDirection.LeftToRight, 
-                tf, 
-                textBlock.FontSize, 
-                Brushes.Black );
-
-            return new Size(formattedText.Width, formattedText.Height);
-        }
 
 
 
@@ -187,6 +169,19 @@ namespace OCDClock
             return new Point((50 + _numeralRadius * Math.Cos(rads)), (50 + _numeralRadius * Math.Sin(rads)));
         }
 
+
+
+        private Size MeasureString(string str, double fontSize)
+        {
+            Size sz = new Size();
+            for(int c = 0; c < str.Length; c++)
+            { 
+                ushort glyph = _hourFontGlyph.CharacterToGlyphMap[ str[c] ];
+                sz.Width += _hourFontGlyph.AdvanceWidths[glyph] * fontSize;
+                sz.Height = Math.Max(_hourFontGlyph.AdvanceHeights[glyph] * (fontSize * (72.0 / 96.0)), sz.Height);
+            }
+            return sz;
+        }
 
 
         /// <summary>
@@ -422,6 +417,28 @@ namespace OCDClock
 
 
 
+        private GlyphRun CreateGlyphRun(string text, Point origin, double fontSize)
+        {
+            ushort[] glyphIndexes = new ushort[text.Length];
+            double[] advanceWidths = new double[text.Length];
+
+            for (int n = 0; n < text.Length; n++)
+            {
+                ushort glyphIndex = _hourFontGlyph.CharacterToGlyphMap[text[n]];
+                glyphIndexes[n] = glyphIndex;
+                double width = _hourFontGlyph.AdvanceWidths[glyphIndex] * fontSize;
+                advanceWidths[n] = width;
+            }
+
+            GlyphRun glyphRun = new GlyphRun(_hourFontGlyph, 0, false, fontSize,
+                glyphIndexes, origin, advanceWidths, null, null, null, null,
+                null, null);
+
+            return glyphRun;
+        }
+
+
+
         /// <summary>
         /// Timer used to drive the clock.
         /// </summary>
@@ -438,7 +455,7 @@ namespace OCDClock
         /// <summary>
         /// Radius of the circle used to position numerals on the clock face.
         /// </summary>
-        double              _numeralRadius = 37;
+        double              _numeralRadius = 36;
 
 
         /// <summary>
@@ -452,6 +469,8 @@ namespace OCDClock
         /// Default font for clock face.
         /// </summary>
         Typeface            _hourFont = new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.Bold, FontStretches.Normal);
+
+        GlyphTypeface       _hourFontGlyph = null;
     }
 
 

@@ -14,23 +14,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ClockControl}">
                     <Canvas x:Name="MyContainer" Width="100" Height="100">
-                        <TextBlock>1</TextBlock>
-                        <TextBlock>2</TextBlock>
-                        <TextBlock>3</TextBlock>
-                        <TextBlock>4</TextBlock>
-                        <TextBlock>5</TextBlock>
-                        <TextBlock>6</TextBlock>
-                        <TextBlock>7</TextBlock>
-                        <TextBlock>8</TextBlock>
-                        <TextBlock>9</TextBlock>
-                        <TextBlock>10</TextBlock>
-                        <TextBlock>11</TextBlock>
-                        <TextBlock>12</TextBlock>                        
                         <Image Stretch="None" HorizontalAlignment="Left">
                             <Image.Source>
                                 <DrawingImage PresentationOptions:Freeze="True">
                                     <DrawingImage.Drawing>
-                                        <DrawingGroup>
+                                        <DrawingGroup x:Name="geoContainer">
 
                                             <!-- The outer clock circle. -->
 
@@ -433,6 +421,21 @@
                                                     <Pen Thickness="3" Brush="Black" />
                                                 </GeometryDrawing.Pen>
                                             </GeometryDrawing>
+
+                                            <!-- The clock numerals. -->
+
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
+                                            <GlyphRunDrawing />
 
                                             <!-- The hour hand -->
 
