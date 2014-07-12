@@ -438,7 +438,7 @@ namespace OCDClock
         /// <summary>
         /// Radius of the circle used to position numerals on the clock face.
         /// </summary>
-        double              _numeralRadius = 39.5;
+        double              _numeralRadius = 37;
 
 
         /// <summary>
