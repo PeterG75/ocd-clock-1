@@ -65,7 +65,7 @@ namespace OCDClock
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            UpdateDateTime(DateTime.Now);
+            //UpdateDateTime(DateTime.Now);
             InitTimer(IsRunning);
             if (!_hourFont.TryGetGlyphTypeface(out _hourFontGlyph))
                 throw new InvalidOperationException("No glyphtypeface found");
@@ -216,7 +216,7 @@ namespace OCDClock
             {
                 return (DateTime)GetValue(DateTimeProperty);
             }
-            private set
+            set
             {
                 SetValue(DateTimeProperty, value);
             }
