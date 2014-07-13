@@ -65,8 +65,8 @@ namespace OCDClock
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            //UpdateDateTime(DateTime.Now);
             InitTimer(IsRunning);
+            _hourFont = new Typeface(this.FontFamily, this.FontStyle, this.FontWeight, this.FontStretch);
             if (!_hourFont.TryGetGlyphTypeface(out _hourFontGlyph))
                 throw new InvalidOperationException("No glyphtypeface found");
         }
@@ -112,7 +112,7 @@ namespace OCDClock
             var labels = dg.Children.OfType<GlyphRunDrawing>();
             double innerOffset = (50 - NumeralRadius) + 1;
             double innerCircleDiameter = NumeralRadius * 2;
-            double fontSizeDIP = 8.0;
+            double fontSizeDIP = this.FontSize;
             double fontSizePt = fontSizeDIP * (72.0 / 96.0);
             int index = 1;
 
@@ -496,7 +496,7 @@ namespace OCDClock
         /// <summary>
         /// Default font for clock face.
         /// </summary>
-        Typeface            _hourFont = new Typeface(new FontFamily("Segoe UI"), FontStyles.Normal, FontWeights.Bold, FontStretches.Normal);
+        Typeface            _hourFont = null;
 
         GlyphTypeface       _hourFontGlyph = null;
     }
