@@ -108,10 +108,10 @@ namespace OCDClock
         /// </summary>
         public override void OnApplyTemplate()
         {
-            DrawingGroup dg = (DrawingGroup)this.Template.FindName("geoContainer", this);
+            DrawingGroup dg = (DrawingGroup)this.Template.FindName("clockGlyphsContainer", this);
             var labels = dg.Children.OfType<GlyphRunDrawing>();
-            double innerOffset = (50 - _numeralRadius) + 1;
-            double innerCircleDiameter = _numeralRadius * 2;
+            double innerOffset = (50 - NumeralRadius) + 1;
+            double innerCircleDiameter = NumeralRadius * 2;
             double fontSizeDIP = 8.0;
             double fontSizePt = fontSizeDIP * (72.0 / 96.0);
             int index = 1;
@@ -135,7 +135,7 @@ namespace OCDClock
 
                 // Create the low-level glyph run for the text.
                 grd.GlyphRun = CreateGlyphRun(strHour, pt, fontSizeDIP);
-                grd.ForegroundBrush = Brushes.Black;
+                grd.ForegroundBrush = Brushes.DarkRed;
                 index++;
             }
 
@@ -166,7 +166,7 @@ namespace OCDClock
             // The short way:
             double angle = (30.0 * hour) - 90;
             double rads = (Math.PI / 180) * angle;
-            return new Point((50 + _numeralRadius * Math.Cos(rads)), (50 + _numeralRadius * Math.Sin(rads)));
+            return new Point((50 + NumeralRadius * Math.Cos(rads)), (50 + NumeralRadius * Math.Sin(rads)));
         }
 
 
@@ -259,6 +259,23 @@ namespace OCDClock
 
 
         /// <summary>
+        /// Get or set whether the clock is running or frozen.
+        /// </summary>
+        public double NumeralRadius
+        {
+            get
+            {
+                return (double)GetValue(NumeralRadiusProperty);
+            }
+            set
+            {
+                SetValue(NumeralRadiusProperty, value);
+            }
+        }
+
+
+
+        /// <summary>
         /// Register the "DateTime" property as a formal dependency property.
         /// </summary>
         public static DependencyProperty DateTimeProperty = DependencyProperty.Register(
@@ -288,6 +305,17 @@ namespace OCDClock
                 typeof(bool),
                 typeof(ClockControl),
                 new PropertyMetadata(true, new PropertyChangedCallback(OnIsRunningInvalidated)));
+
+
+
+        /// <summary>
+        /// Register the "NumeralRadius" property as a formal dependency property.
+        /// </summary>
+        public static DependencyProperty NumeralRadiusProperty = DependencyProperty.Register(
+                "NumeralRadius",
+                typeof(double),
+                typeof(ClockControl),
+                new PropertyMetadata(36.0));
 
 
 
@@ -455,7 +483,7 @@ namespace OCDClock
         /// <summary>
         /// Radius of the circle used to position numerals on the clock face.
         /// </summary>
-        double              _numeralRadius = 36;
+        //double              _numeralRadius = 36;
 
 
         /// <summary>
