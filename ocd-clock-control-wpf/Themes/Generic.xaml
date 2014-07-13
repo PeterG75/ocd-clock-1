@@ -2,16 +2,16 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"  
-    xmlns:local="clr-namespace:OCDClock">
+    xmlns:local="clr-namespace:OCDClock" xmlns:System="clr-namespace:System;assembly=mscorlib">
 
-    <local:MilliSecondsConverter x:Key="milliConverter"/>    
+    <local:MilliSecondsConverter x:Key="milliConverter"/>
     <local:SecondsConverter x:Key="secondsConverter"/>
     <local:MinutesConverter x:Key="minutesConverter"/>
     <local:HoursConverter x:Key="hoursConverter"/>
 
 
 
-    <Style TargetType="{x:Type local:ClockControl}" x:Key="{ComponentResourceKey TypeInTargetAssembly=local:ClockControl, ResourceId=ClockStyleBare}">
+    <Style TargetType="{x:Type local:ClockControl}" x:Key="{ComponentResourceKey ResourceId=ClockStyleBare, TypeInTargetAssembly={x:Type local:ClockControl}}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ClockControl}">
@@ -20,7 +20,7 @@
                             <Image.Source>
                                 <DrawingImage PresentationOptions:Freeze="True">
                                     <DrawingImage.Drawing>
-                                        <DrawingGroup x:Name="geoContainer">
+                                        <DrawingGroup x:Name="clockGlyphsContainer">
 
                                             <!-- The outer clock circle. -->
 
@@ -36,12 +36,12 @@
                                             </GeometryDrawing>
 
                                             <!-- Minor tick marks (minutes) around the edge of the clock. -->
-                                            
+
                                             <GeometryDrawing>
                                                 <GeometryDrawing.Geometry>
                                                     <GeometryGroup>
-                                                    
-                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5"></LineGeometry>
+
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5"/>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
                                                             <LineGeometry.Transform>
                                                                 <RotateTransform CenterX="50" CenterY="50" Angle="6" />
@@ -173,9 +173,9 @@
                                                             </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                        <LineGeometry.Transform>
-                                                            <RotateTransform CenterX="50" CenterY="50" Angle="156" />
-                                                        </LineGeometry.Transform>
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="156" />
+                                                            </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
                                                             <LineGeometry.Transform>
@@ -199,9 +199,9 @@
                                                             </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                        <LineGeometry.Transform>
-                                                            <RotateTransform CenterX="50" CenterY="50" Angle="186" />
-                                                        </LineGeometry.Transform>
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="186" />
+                                                            </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
                                                             <LineGeometry.Transform>
@@ -225,9 +225,9 @@
                                                             </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                        <LineGeometry.Transform>
-                                                            <RotateTransform CenterX="50" CenterY="50" Angle="216" />
-                                                        </LineGeometry.Transform>
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="216" />
+                                                            </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
                                                             <LineGeometry.Transform>
@@ -251,9 +251,9 @@
                                                             </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                        <LineGeometry.Transform>
-                                                            <RotateTransform CenterX="50" CenterY="50" Angle="246" />
-                                                        </LineGeometry.Transform>
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="246" />
+                                                            </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
                                                             <LineGeometry.Transform>
@@ -277,9 +277,9 @@
                                                             </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                        <LineGeometry.Transform>
-                                                            <RotateTransform CenterX="50" CenterY="50" Angle="276" />
-                                                        </LineGeometry.Transform>
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="276" />
+                                                            </LineGeometry.Transform>
                                                         </LineGeometry>
                                                         <LineGeometry StartPoint="50, 10" EndPoint="50,5">
                                                             <LineGeometry.Transform>
@@ -347,9 +347,9 @@
                                                             <LineGeometry.Transform>
                                                                 <RotateTransform CenterX="50" CenterY="50" Angle="354" />
                                                             </LineGeometry.Transform>
-                                                        </LineGeometry>                                                    
-                                                    
-                                                </GeometryGroup>
+                                                        </LineGeometry>
+
+                                                    </GeometryGroup>
                                                 </GeometryDrawing.Geometry>
                                                 <GeometryDrawing.Pen>
                                                     <Pen Thickness="1" Brush="Black" />
@@ -361,7 +361,7 @@
                                             <GeometryDrawing>
                                                 <GeometryDrawing.Geometry>
                                                     <GeometryGroup>
-                                                        <LineGeometry StartPoint="50, 12.5" EndPoint="50, 5"></LineGeometry>
+                                                        <LineGeometry StartPoint="50, 12.5" EndPoint="50, 5"/>
                                                         <LineGeometry StartPoint="50, 12.5" EndPoint="50, 5">
                                                             <LineGeometry.Transform>
                                                                 <RotateTransform CenterX="50" CenterY="50" Angle="30" />
@@ -444,28 +444,26 @@
                                             <GeometryDrawing>
                                                 <GeometryDrawing.Geometry>
                                                     <GeometryGroup>
-                                                        <LineGeometry StartPoint="50,53" EndPoint="50, 25"></LineGeometry>
                                                         <GeometryGroup.Transform>
-                                                            <RotateTransform Angle="{Binding Path=DateTime, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource hoursConverter}}" CenterX="50" CenterY="50">
-                                                            </RotateTransform>
+                                                            <RotateTransform Angle="{Binding DateTime, Converter={StaticResource hoursConverter}, RelativeSource={RelativeSource TemplatedParent}}" CenterX="50" CenterY="50"/>
                                                         </GeometryGroup.Transform>
+                                                        <LineGeometry StartPoint="50,53" EndPoint="50, 25"/>
                                                     </GeometryGroup>
                                                 </GeometryDrawing.Geometry>
                                                 <GeometryDrawing.Pen>
                                                     <Pen Thickness="5" Brush="Black" EndLineCap="Triangle" />
                                                 </GeometryDrawing.Pen>
                                             </GeometryDrawing>
-                                            
+
                                             <!-- The minute hand -->
 
                                             <GeometryDrawing>
                                                 <GeometryDrawing.Geometry>
                                                     <GeometryGroup>
-                                                        <LineGeometry StartPoint="50,53" EndPoint="50, 14"></LineGeometry>
                                                         <GeometryGroup.Transform>
-                                                            <RotateTransform Angle="{Binding Path=DateTime, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource minutesConverter}}" CenterX="50" CenterY="50">
-                                                            </RotateTransform>
+                                                            <RotateTransform Angle="{Binding DateTime, Converter={StaticResource minutesConverter}, RelativeSource={RelativeSource TemplatedParent}}" CenterX="50" CenterY="50"/>
                                                         </GeometryGroup.Transform>
+                                                        <LineGeometry StartPoint="50,53" EndPoint="50, 14"/>
                                                     </GeometryGroup>
                                                 </GeometryDrawing.Geometry>
                                                 <GeometryDrawing.Pen>
@@ -475,23 +473,19 @@
 
                                             <!-- The second hand -->
 
-                                            <GeometryDrawing>
+                                            <GeometryDrawing Brush="Red">
                                                 <GeometryDrawing.Geometry>
                                                     <GeometryGroup>
-                                                        <LineGeometry StartPoint="50,50" EndPoint="50, 10"></LineGeometry>
-                                                        <EllipseGeometry Center="50, 50" RadiusX="1" RadiusY="1" />
                                                         <GeometryGroup.Transform>
-                                                            <RotateTransform Angle="{Binding Path=DateTime, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource milliConverter}}" CenterX="50" CenterY="50">
-                                                            </RotateTransform>
+                                                            <RotateTransform Angle="{Binding DateTime, Converter={StaticResource milliConverter}, RelativeSource={RelativeSource TemplatedParent}}" CenterX="50" CenterY="50"/>
                                                         </GeometryGroup.Transform>
+                                                        <LineGeometry StartPoint="50,50" EndPoint="50, 10"/>
+                                                        <EllipseGeometry Center="50, 50" RadiusX="1" RadiusY="1" />
                                                     </GeometryGroup>
                                                 </GeometryDrawing.Geometry>
                                                 <GeometryDrawing.Pen>
                                                     <Pen Thickness="1" Brush="Red" />
                                                 </GeometryDrawing.Pen>
-                                                <GeometryDrawing.Brush>
-                                                    <SolidColorBrush Color="Red" />
-                                                </GeometryDrawing.Brush>
                                             </GeometryDrawing>
 
                                         </DrawingGroup>
@@ -506,7 +500,7 @@
     </Style>
 
 
-    <Style TargetType="{x:Type local:ClockControl}" x:Key="{ComponentResourceKey TypeInTargetAssembly=local:ClockControl, ResourceId=ClockStyleOffice}">
+    <Style TargetType="{x:Type local:ClockControl}" x:Key="{ComponentResourceKey ResourceId=ClockStyleOffice, TypeInTargetAssembly={x:Type local:ClockControl}}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ClockControl}">
@@ -515,7 +509,7 @@
                             <Image.Source>
                                 <DrawingImage PresentationOptions:Freeze="True">
                                     <DrawingImage.Drawing>
-                                        <DrawingGroup x:Name="geoContainer">
+                                        <DrawingGroup x:Name="clockGlyphsContainer">
 
                                             <!-- The outer clock circle. -->
 
@@ -1020,13 +1014,13 @@
         </Setter>
     </Style>
 
-    
-    <Style TargetType="{x:Type local:ClockControl}" x:Key="{ComponentResourceKey TypeInTargetAssembly=local:ClockControl, ResourceId=ClockStyleSpecialOps}">
+
+    <Style TargetType="{x:Type local:ClockControl}" x:Key="{ComponentResourceKey ResourceId=ClockStyleSpecialOps, TypeInTargetAssembly={x:Type local:ClockControl}}">
+        <Setter Property="NumeralRadius" Value="34" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ClockControl}">
                     <Canvas x:Name="MyContainer" Width="100" Height="100" Margin="0">
-
 
                         <Image Stretch="None" Width="100" Height="100" Margin="0">
                             <Image.Source>
@@ -1081,8 +1075,7 @@
                                                     </GeometryGroup>
                                                 </GeometryDrawing.Geometry>
                                                 <GeometryDrawing.Pen>
-                                                    <Pen Thickness="5" Brush="#232323">
-                                                     </Pen>
+                                                    <Pen Thickness="5" Brush="#232323"/>
                                                 </GeometryDrawing.Pen>
                                                 <GeometryDrawing.Brush>
                                                     <!--<RadialGradientBrush >
@@ -1106,7 +1099,7 @@
                                                     </LinearGradientBrush>
 
                                                 </GeometryDrawing.Brush>
-                                            </GeometryDrawing>                                            
+                                            </GeometryDrawing>
                                         </DrawingGroup>
                                     </DrawingImage.Drawing>
                                 </DrawingImage>
@@ -1117,416 +1110,415 @@
                             <Image.Effect>
                                 <DropShadowEffect Color="Red" BlurRadius="5.5" ShadowDepth="0" Opacity="1.0" />
                             </Image.Effect>
-                                <Image.Source>
-                                    <DrawingImage PresentationOptions:Freeze="True">
-                                        <DrawingImage.Drawing>
-                                            <DrawingGroup>
+                            <Image.Source>
+                                <DrawingImage PresentationOptions:Freeze="True">
+                                    <DrawingImage.Drawing>
+                                        <DrawingGroup>
 
-                                                <!-- Minor tick marks (minutes) around the edge of the clock. -->
+                                            <!-- Minor tick marks (minutes) around the edge of the clock. -->
 
-                                                <GeometryDrawing>
-                                                    <GeometryDrawing.Geometry>
-                                                        <GeometryGroup>
+                                            <GeometryDrawing>
+                                                <GeometryDrawing.Geometry>
+                                                    <GeometryGroup>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5"/>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="6" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="12" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="18" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="24" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5"/>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="6" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="12" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="18" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="24" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="30" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="36" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="42" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="48" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="54" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="30" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="36" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="42" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="48" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="54" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="60" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="66" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="72" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="78" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="84" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="60" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="66" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="72" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="78" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="84" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="90" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="96" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="102" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="108" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="114" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="90" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="96" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="102" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="108" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="114" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="120" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="126" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="132" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="138" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="144" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="120" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="126" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="132" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="138" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="144" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="150" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="156" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="162" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="168" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="174" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="150" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="156" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="162" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="168" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="174" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="180" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="186" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="192" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="198" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="204" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="180" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="186" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="192" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="198" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="204" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="210" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="216" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="222" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="228" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="234" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="210" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="216" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="222" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="228" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="234" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="240" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="246" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="252" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="258" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="264" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="240" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="246" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="252" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="258" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="264" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="270" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="276" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="282" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="288" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="294" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="270" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="276" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="282" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="288" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="294" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="300" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="306" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="312" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="318" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="324" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="300" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="306" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="312" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="318" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="324" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="330" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="336" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="342" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="348" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 10" EndPoint="50,5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="354" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="330" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="336" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="342" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="348" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 10" EndPoint="50,5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="354" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
 
-                                                        </GeometryGroup>
-                                                    </GeometryDrawing.Geometry>
-                                                    <GeometryDrawing.Pen>
-                                                        <Pen Thickness="1" Brush="Red" />
-                                                    </GeometryDrawing.Pen>
-                                                </GeometryDrawing>
+                                                    </GeometryGroup>
+                                                </GeometryDrawing.Geometry>
+                                                <GeometryDrawing.Pen>
+                                                    <Pen Thickness="1" Brush="Red" />
+                                                </GeometryDrawing.Pen>
+                                            </GeometryDrawing>
 
-                                                <!-- Major tick marks (hours) around the edge of the clock. -->
+                                            <!-- Major tick marks (hours) around the edge of the clock. -->
 
-                                                <GeometryDrawing>
-                                                    <GeometryDrawing.Geometry>
-                                                        <GeometryGroup>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5"/>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="30" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="60" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="90" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="120" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="150" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="180" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="210" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="240" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="270" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="300" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                            <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
-                                                                <LineGeometry.Transform>
-                                                                    <RotateTransform CenterX="50" CenterY="50" Angle="330" />
-                                                                </LineGeometry.Transform>
-                                                            </LineGeometry>
-                                                        </GeometryGroup>
-                                                    </GeometryDrawing.Geometry>
-                                                    <GeometryDrawing.Pen>
-                                                        <Pen Thickness="3" Brush="Red" />
-                                                    </GeometryDrawing.Pen>
-                                                </GeometryDrawing>
+                                            <GeometryDrawing>
+                                                <GeometryDrawing.Geometry>
+                                                    <GeometryGroup>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5"/>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="30" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="60" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="90" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="120" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="150" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="180" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="210" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="240" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="270" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="300" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                        <LineGeometry StartPoint="50, 15" EndPoint="50, 5">
+                                                            <LineGeometry.Transform>
+                                                                <RotateTransform CenterX="50" CenterY="50" Angle="330" />
+                                                            </LineGeometry.Transform>
+                                                        </LineGeometry>
+                                                    </GeometryGroup>
+                                                </GeometryDrawing.Geometry>
+                                                <GeometryDrawing.Pen>
+                                                    <Pen Thickness="3" Brush="Red" />
+                                                </GeometryDrawing.Pen>
+                                            </GeometryDrawing>
 
-                                            </DrawingGroup>
+                                        </DrawingGroup>
 
-                                        </DrawingImage.Drawing>
-                                    </DrawingImage>
-                                </Image.Source>
-                            </Image>
+                                    </DrawingImage.Drawing>
+                                </DrawingImage>
+                            </Image.Source>
+                        </Image>
 
-                        <!--<Border BorderBrush="Yellow" BorderThickness="0.25">-->
                         <Image HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="None" Width="100" Height="100">
-                       
+
                             <Image.Source>
                                 <DrawingImage PresentationOptions:Freeze="True">
                                     <DrawingImage.Drawing>
                                         <DrawingGroup x:Name="clockGlyphsContainer">
 
-                                            <!-- Invisible spacers to enforce layout. -->                                            
+                                            <!-- Invisible spacers to enforce layout. -->
                                             <GeometryDrawing>
                                                 <GeometryDrawing.Geometry>
                                                     <GeometryGroup>
@@ -1625,13 +1617,13 @@
                                 </DrawingImage>
                             </Image.Source>
                         </Image>
-                        <!--</Border>-->
+
                     </Canvas>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>    
+    </Style>
 
-    
-    
+
+
 </ResourceDictionary>
