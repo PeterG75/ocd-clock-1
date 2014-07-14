@@ -2,7 +2,9 @@
 
 ocd-clock is a simple analog clock control with support for discrete and continuous motion, consistent geometry, and precision alignment of clock hands and tick marks. It's barebones, mathematically consistent, and accurate to the (sub-) pixel.
 
-![OCD Clock v1.0](ocd-clock-assets/ocd_clock.png?raw=true "OCD Clock v1.0")
+![OCD Clock v1.0](ocd-clock-assets/ocd_clock_dark.png?raw=true "OCD Clock v1.0 - Special Ops Theme")
+
+![OCD Clock v1.0](ocd-clock-assets/ocd_clock.png?raw=true "OCD Clock v1.0 - Office Theme")
 
 # License #
 
