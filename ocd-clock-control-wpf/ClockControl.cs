@@ -171,6 +171,9 @@ namespace OCDClock
 
 
 
+        /// <summary>
+        /// Quick 'n dirty string measurement.
+        /// </summary>
         private Size MeasureString(string str, double fontSize)
         {
             Size sz = new Size();
@@ -445,6 +448,10 @@ namespace OCDClock
 
 
 
+        /// <summary>
+        /// Create a GlyphRun object corresponding to the specified text, at the
+        /// specified location and size.
+        /// </summary>
         private GlyphRun CreateGlyphRun(string text, Point origin, double fontSize)
         {
             ushort[] glyphIndexes = new ushort[text.Length];
@@ -494,10 +501,14 @@ namespace OCDClock
 
 
         /// <summary>
-        /// Default font for clock face.
+        /// Default font for the clock face.
         /// </summary>
         Typeface            _hourFont = null;
 
+
+        /// <summary>
+        /// A glyph-friendly typeface for rendering the actual clock glyphs.
+        /// </summary>
         GlyphTypeface       _hourFontGlyph = null;
     }
 

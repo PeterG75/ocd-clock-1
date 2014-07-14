@@ -9,7 +9,15 @@
     <local:MinutesConverter x:Key="minutesConverter"/>
     <local:HoursConverter x:Key="hoursConverter"/>
 
-
+    <!-- For convenience and in keeping with WPF convention, we'll build the
+    majority of the clock here in XAML, which is a little verbose given how
+    many individual clock elements there are, but that's okay. All of the XAML
+    can be trivially converted to C# painting code in the code-behind if
+    desired. We now define three distinct clock styles, "ClockStyleBare", 
+    "ClockStyleOffice", and "ClockStyleSpecialOps", all of which are based on 
+    roughly the same layout technique, and one of which must be assigned to the
+    clock in order to theme it for display. Clients can either specify a pre-
+    existing clock style or create a new clock style of their own. -->
 
     <Style TargetType="{x:Type local:ClockControl}" x:Key="{ComponentResourceKey ResourceId=ClockStyleBare, TypeInTargetAssembly={x:Type local:ClockControl}}">
         <Setter Property="Template">
